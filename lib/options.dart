@@ -15,7 +15,7 @@ class OptionsConstantPool<T> extends ConstantPool<Option<T>> {
 /// @param <T> The value type of the option when configuring a value programmatically
 /// @see ConnectionFactoryOptions
 /// @see TransactionDefinition
-final class Option<T> {
+class Option<T> {
   final String _name;
 
   final bool _sensitive;

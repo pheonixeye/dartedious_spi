@@ -1,6 +1,9 @@
 import 'package:dartedious_spi/batch.dart';
 import 'package:dartedious_spi/closable.dart';
 import 'package:dartedious_spi/connection_metadata.dart';
+import 'package:dartedious_spi/isolation_level.dart';
+import 'package:dartedious_spi/transaction_definition.dart';
+import 'package:dartedious_spi/validation_depth.dart';
 import 'package:rxdart/subjects.dart';
 
 abstract class Connection extends Closable {

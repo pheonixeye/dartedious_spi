@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:dartedious_spi/assert.dart';
+import 'package:dartedious_spi/default_lob.dart';
 import 'package:rxdart/subjects.dart';
 
 /// Represents a handle to a large binary object.

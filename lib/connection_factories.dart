@@ -1,6 +1,8 @@
 import 'package:dartedious_spi/_exceptions.dart';
 import 'package:dartedious_spi/assert.dart';
 import 'package:dartedious_spi/connection_factory.dart';
+import 'package:dartedious_spi/connection_factory_options.dart';
+import 'package:dartedious_spi/connection_factory_provider.dart';
 
 final class ConnectionFactories {
   ConnectionFactories._();
@@ -34,7 +36,7 @@ final class ConnectionFactories {
   /// @throws IllegalArgumentException if {@code url} is {@code null}
   /// @throws IllegalStateException    if no available implementation can create a {@link ConnectionFactory}
   static ConnectionFactory get(String url) {
-    return get(ConnectionFactoryOptions.parse(
+    return _get(ConnectionFactoryOptions.parse(
         Assert.requireNonNull(url, "R2DBC Connection URL must not be null")));
   }
 
@@ -45,7 +47,7 @@ final class ConnectionFactories {
   /// @return the created {@link ConnectionFactory}
   /// @throws IllegalArgumentException if {@code connectionFactoryOptions} is {@code null}
   /// @throws IllegalStateException    if no available implementation can create a {@link ConnectionFactory}
-  static ConnectionFactory get(
+  static ConnectionFactory _get(
       ConnectionFactoryOptions connectionFactoryOptions) {
     ConnectionFactory? connectionFactory = find(connectionFactoryOptions);
 
@@ -68,7 +70,7 @@ final class ConnectionFactories {
         connectionFactoryOptions, "connectionFactoryOptions must not be null");
 
     for (ConnectionFactoryProvider provider in _loadProviders()) {
-      if (provider.supports(connectionFactoryOptions)) {
+      if (provider.supports(connectionFactoryOptions!)) {
         return true;
       }
     }
