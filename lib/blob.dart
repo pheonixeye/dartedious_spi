@@ -11,7 +11,7 @@ abstract class BlobBase {
   ///
   /// @param p the backing {@link Publisher} of {@link ByteBuffer}.
   /// @return the {@link Blob} wrapper
-  BlobBase from<T>(PublishSubject<T> p);
+  BlobBase from(PublishSubject<ByteBuffer> p);
 
   /// Returns the content stream as a {@link Publisher} emitting {@link ByteBuffer} chunks.
   /// <p>
@@ -29,10 +29,10 @@ abstract class BlobBase {
 }
 
 class Blob extends BlobBase {
-  late final DefaultLob lob;
+  late final DefaultLob<ByteBuffer> lob;
 
   @override
-  Blob from<ByteBuffer>(PublishSubject<ByteBuffer> p) {
+  Blob from(PublishSubject<ByteBuffer> p) {
     Assert.requireNonNull(p, "Publisher must not be null");
 
     lob = DefaultLob<ByteBuffer>(p);

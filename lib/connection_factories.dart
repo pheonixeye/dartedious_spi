@@ -95,8 +95,8 @@ final class ConnectionFactories {
     return availableDrivers.toString();
   }
 
-  //TODO: implementation in dart ??
-  static ServiceLoader<ConnectionFactoryProvider> _loadProviders() {
-        return ServiceLoader.load(ConnectionFactoryProvider.class, ConnectionFactoryProvider.class.getClassLoader());
-    }
+  //HACK: implementation in dart ??
+  static List<ConnectionFactoryProvider> _loadProviders() {
+    return [];
+  }
 }

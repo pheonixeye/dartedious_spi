@@ -1,3 +1,4 @@
+import 'package:dartedious_spi/result.dart';
 import 'package:rxdart/subjects.dart';
 
 /// A collection of statements that are executed in a batch for performance reasons.

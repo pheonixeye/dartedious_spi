@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
 
@@ -8,6 +7,7 @@ import 'package:dartedious_spi/_exceptions.dart';
 import 'package:dartedious_spi/assert.dart';
 import 'package:dartedious_spi/connection_factory_options.dart';
 import 'package:dartedious_spi/options.dart';
+import 'package:dartedious_spi/java/biconsumer.dart';
 
 abstract class ConnectionUrlParser {
   static final _PROHIBITED_QUERY_OPTIONS = {

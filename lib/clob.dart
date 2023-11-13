@@ -27,7 +27,7 @@ abstract class ClobBase {
 }
 
 class Clob implements ClobBase {
-  late final DefaultLob lob;
+  late final DefaultLob<String> lob;
   @override
   ClobBase from(PublishSubject<String> p) {
     Assert.requireNonNull(p, "Publisher must not be null");

@@ -1,5 +1,4 @@
 import 'package:dartedious_spi/nullability.dart';
-import 'package:dartedious_spi/options.dart';
 
 abstract class ReadableMetadata {
   /// Returns the primary Java {@link Class type}.  This type can be considered the native representation that is used to exchange values with the least loss in precision.
@@ -13,7 +12,7 @@ abstract class ReadableMetadata {
   /// @see Row#get
   /// @see OutParameters#get
 
-  Class<Any> getJavaType() {
+  Type? getJavaType() {
     return null;
   }
 
