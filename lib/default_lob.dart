@@ -2,7 +2,6 @@
 
 import 'package:dartedious_spi/_exceptions.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:rxdart/subjects.dart';
 
 /// Abstract implementation for large object types.
 
@@ -39,11 +38,7 @@ class DefaultLob<T> {
   }
 
   PublishSubject<void> discard() {
-    return PublishSubject(
-      onListen: () {
-        bool completed = false;
-        //TODO:
-      },
-    );
+    //TODO:
+    return PublishSubject();
   }
 }

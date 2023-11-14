@@ -3,6 +3,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:bit_array/bit_array.dart';
 import 'package:dartedious_spi/_exceptions.dart';
 import 'package:dartedious_spi/assert.dart';
 import 'package:dartedious_spi/connection_factory_options.dart';
@@ -284,10 +285,11 @@ class QueryStringParser {
 
   final Cursor state;
 
-  final BitSet delimiters = BitSet(256);
+//TODO: check bitarray implementation / ascii =/= unicode
+  final BitArray delimiters = BitArray.fromUint8List(Uint8List(256));
 
   QueryStringParser(this.input) : state = Cursor(input.length) {
-    delimiters.set('&'); // ampersand, tuple separator
+    delimiters.setBits('&'.codeUnits); // ampersand, tuple separator
   }
 
   /// Creates a new {@link QueryStringParser} given the {@code input}.
@@ -314,7 +316,7 @@ class QueryStringParser {
       throw IllegalStateException("Parsing is finished");
     }
 
-    delimiters.set('=');
+    delimiters.setBits('='.codeUnits);
     return parseToken();
   }
 
@@ -331,7 +333,7 @@ class QueryStringParser {
     state.incrementParsePosition();
 
     if (delim == '=') {
-      delimiters.clear('=');
+      delimiters.clearBits('='.codeUnits);
       try {
         return parseToken();
       } finally {
@@ -353,7 +355,7 @@ class QueryStringParser {
 
     while (!state.isFinished()) {
       String current = input[state.getParsePosition()];
-      if (delimiters.get(current)) {
+      if (delimiters[current.codeUnitAt(0)]) {
         break;
       } else if (isWhitespace(current)) {
         skipWhiteSpace();
@@ -395,7 +397,7 @@ class QueryStringParser {
 
     for (int i = state.getParsePosition(); i < state.getUpperBound(); i++) {
       String current = input[i];
-      if (delimiters.get(current) || isWhitespace(current)) {
+      if (delimiters[current.codeUnitAt(0)] || isWhitespace(current)) {
         break;
       }
       pos++;
