@@ -8,19 +8,18 @@ import 'package:dartedious_spi/options.dart';
 /// @see Connection#beginTransaction(TransactionDefinition)
 /// @see Option
 /// @since 0.9
-abstract class TransactionDefinition {
+class TransactionDefinition {
   /// Isolation level requested for the transaction.
-  static Option<IsolationLevel> ISOLATION_LEVEL =
-      Option.valueOf("isolationLevel");
+  Option<IsolationLevel> ISOLATION_LEVEL = Option.valueOf("isolationLevel");
 
   /// The transaction mutability (i.e. whether the transaction should be started in read-only mode).
-  static Option<bool> READ_ONLY = Option.valueOf("readOnly");
+  Option<bool> READ_ONLY = Option.valueOf("readOnly");
 
   /// Name of the transaction.
-  static Option<String> NAME = Option.valueOf("name");
+  Option<String> NAME = Option.valueOf("name");
 
   /// Lock wait timeout.
-  static Option<Duration> LOCK_WAIT_TIMEOUT = Option.valueOf("lockWaitTimeout");
+  Option<Duration> LOCK_WAIT_TIMEOUT = Option.valueOf("lockWaitTimeout");
 
   /// Retrieve a transaction attribute by its {@link Option} identifier.  This low-level interface allows querying transaction attributes supported by the {@link Connection} that should be applied
   /// when starting a new transaction.
@@ -30,5 +29,7 @@ abstract class TransactionDefinition {
   /// @return the value of the transaction attribute. Can be {@code null} to indicate absence of the attribute.
   /// @throws IllegalArgumentException if {@code name} or {@code type} is {@code null}
 
-  T? getAttribute<T>(Option<T> option);
+  T? getAttribute<T>(Option<T> option) {
+    throw UnimplementedError();
+  }
 }

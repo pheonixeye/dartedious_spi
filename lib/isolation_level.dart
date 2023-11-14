@@ -5,20 +5,14 @@ import 'package:dartedious_spi/constant_pool.dart';
 import 'package:dartedious_spi/options.dart';
 import 'package:dartedious_spi/transaction_definition.dart';
 
-class IsolationLevelConstantPool implements ConstantPool<IsolationLevel> {
+class IsolationLevelConstantPool extends ConstantPool<IsolationLevel> {
   @override
   createConstant(String name, bool sensitive) {
     return IsolationLevel(name);
   }
-
-  @override
-  IsolationLevel valueOf(String name, bool sensitive) {
-    // TODO: implement valueOf
-    throw UnimplementedError();
-  }
 }
 
-class IsolationLevel implements TransactionDefinition {
+class IsolationLevel extends TransactionDefinition {
   static final ConstantPool<IsolationLevel> CONSTANTS =
       IsolationLevelConstantPool();
 
@@ -53,7 +47,7 @@ class IsolationLevel implements TransactionDefinition {
   T? getAttribute<T>(Option<T> option) {
     Assert.requireNonNull(option, "option must not be null");
 
-    if (option == TransactionDefinition.ISOLATION_LEVEL) {
+    if (option == ISOLATION_LEVEL) {
       return option.cast(this);
     }
 
